@@ -1,18 +1,29 @@
-class Student:
-    def __init__(self, name = 'student', age = 18):
-        self.name = name
-        self.age = age
-        self.courses = []
-
-    def add_course(self, course):
-        self.courses.append(course)
-
-    def __repr__(self):
-        info = "Name: " + self.name
-        info += "\nAge: " + str(self.age)
-        info += "\nCourses: " + " , ".join(self.courses)
-        return info + "\n"
+def shift(lst, k):
+    lst_copy = lst.copy()
+    for ind in range(len(lst)):
+        if ind + k < len(lst):
+            lst[ind] = lst_copy[ind + k]
+        else:
+            lst[ind] = lst_copy[abs(len(lst) - (ind + k))]
+    return lst
 
 
-peter = Student(16)
-print(peter.age, peter.name)
+def directional_shift(lst, k, direction="left"):
+    lst_copy = lst.copy()
+    if direction == "right":
+        k *= -1
+    for ind in range(len(lst)):
+        if ind + k < len(lst):
+            lst[ind] = lst_copy[ind + k]
+        else:
+            lst[ind] = lst_copy[abs(len(lst) - (ind + k))]
+    return lst
+
+
+test = [1, 2, 3, 4, 5, 6]
+test2 = [1, 2, 3, 4, 5, 6]
+move = 2
+
+print(shift(test, move))
+
+print(directional_shift(test2, move, "right"))
